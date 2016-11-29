@@ -1,0 +1,8 @@
+[me]
+localhost ansible_connection=local ansible_python_interpreter=/opt/boxen/pyenv/shims/python
+
+[testcontainers]
+ansibletestserver ansible_connection=docker ansible_user=root
+
+[robots]
+test1 image="registry.kw.kontextwork.com/ansible:testjessie"

@@ -1,0 +1,10 @@
+- src: chrismeyersfsu.provision_docker
+  name: provision_docker
+
+- src: manala.git
+- src: manala.ohmyzsh
+- src: manala.zsh
+- src: manala.vim
+- src: bdellegrazie.ca-certificates
+- src: manala.apt
+- src: manala.shorewall

@@ -1,0 +1,8 @@
+manala_ohmyzsh_update: false
+
+manala_ohmyzsh_users:
+  - user:     root
+    template: users/default.prod.j2
+    config:
+      - ZSH_THEME: default.prod
+      - plugins: (git debian common-aliases history history-substring-search)
