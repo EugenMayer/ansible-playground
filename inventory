@@ -5,4 +5,4 @@ localhost ansible_connection=local ansible_python_interpreter=/opt/boxen/pyenv/s
 ansibletestserver ansible_connection=docker ansible_user=root
 
 [robots]
-test1 image="registry.kw.kontextwork.com/ansible:testjessie"
+test1 image="eugenmayer/docker-image-ansible"
