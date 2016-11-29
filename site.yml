@@ -21,11 +21,6 @@
 - hosts: ansibletestserver
   roles:
     - common
-    - manala.git
-    - manala.zsh
-    - bdellegrazie.ca-certificates
-    - { role: manala.ohmyzsh }
-    - manala.vim
 
 #
 ## start our test container

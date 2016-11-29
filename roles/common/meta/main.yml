@@ -1,0 +1,7 @@
+---
+dependencies:
+  - manala.git
+  - manala.zsh
+  - bdellegrazie.ca-certificates
+  - { role: manala.ohmyzsh }
+  - manala.vim
