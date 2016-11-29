@@ -15,7 +15,7 @@
     - name: Create container
       docker_container:
         name: ansibletestserver
-        image: registry.kw.kontextwork.com/ansible:testjessie
+        image: eugenmayer/ansible
 
 # those would be the test roles whatever we do
 - hosts: ansibletestserver
