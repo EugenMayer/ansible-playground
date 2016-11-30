@@ -14,20 +14,25 @@
   tasks:
     - name: Create container
       docker_container:
-        name: ansibletestserver
+        name: ansibletestcontainer
         image: eugenmayer/docker-image-ansible
 
 # those would be the test roles whatever we do
-- hosts: ansibletestserver
+- hosts: ansibletestcontainer
   roles:
     - common
+    - docker-host
 
+- hosts: ansibletestbarebone
+  roles:
+    - common
+    - docker-host
 #
 ## start our test container
 #- hosts: localhost
 #  tasks:
 #    - name: Remove container
 #      docker_container:
-#        name: ansibletestserver
+#        name: ansibletestcontainer
 #        state: absent
 

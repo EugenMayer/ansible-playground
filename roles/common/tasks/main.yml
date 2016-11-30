@@ -1,0 +1,2 @@
+# deploy zsh patch for docker, if we have a docker env
+- copy: src=zshrc.docker.conf dest=/root/.zsh/docker.conf owner=root group=root mode=0644

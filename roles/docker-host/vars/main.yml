@@ -1,0 +1,72 @@
+manala_apt_repositories:
+  - source: deb https://apt.dockerproject.org/repo debian-jessie main
+
+manala_apt_packages:
+  - docker-engine
+
+shorewall_rules:
+  - section: 'ALL'
+    rules:
+      - source: 'net'
+        dest: '$FW'
+        action: 'ACCEPT'
+        proto: 'tcp'
+        dest_ports:
+          - '2202'
+
+shorewall_zones:
+  - name: 'fw'
+    in_options:
+    options:
+    out_options:
+    type: 'firewall'
+  - name: 'net'
+    in_options:
+    options:
+    out_options:
+    type: 'ipv4'
+  - name: 'dock'
+    in_options:
+    options:
+    out_options:
+    type: 'ipv4'
+
+shorewall_policies:
+  - source: '$FW'
+    dest: 'all'
+    policy: 'ACCEPT'
+    log_level: ''
+    limit_burst: ''
+  - source: 'dock'
+    dest: 'all'
+    policy: 'ACCEPT'
+    log_level: ''
+    limit_burst: ''
+  - source: 'loc'
+    dest: 'net'
+    policy: 'ACCEPT'
+    log_level: ''
+    limit_burst: ''
+  - source: 'net'
+    dest: 'all'
+    policy: 'DROP'
+    log_level: 'info'
+    limit_burst: ''
+  - source: 'all'
+    dest: 'all'
+    policy: 'REJECT'
+    log_level: 'info'
+    limit_burst: ''
+
+shorewall_interfaces:
+  - name: 'eth0'
+    zone: 'net'
+    options:
+      - 'dhcp'
+      - 'nosmurfs'
+      - 'sourceroute=0'
+      - 'tcpflags'
+  - name: 'docker0'
+    zone: 'dock'
+    options:
+      - 'bridge'

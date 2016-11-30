@@ -4,7 +4,9 @@
 - src: manala.git
 - src: manala.ohmyzsh
 - src: manala.zsh
-- src: manala.vim
+- src: mmacia.ohmyzsh
 - src: bdellegrazie.ca-certificates
 - src: manala.apt
 - src: manala.shorewall
+- src: https://github.com/EugenMayer/ansible-shorewall
+  name: eugenmayer.shorewall

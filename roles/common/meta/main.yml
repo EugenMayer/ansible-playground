@@ -1,7 +1,9 @@
 ---
 dependencies:
+  - manala.apt
+  - eugenmayer.shorewall
   - manala.git
   - manala.zsh
   - bdellegrazie.ca-certificates
-  - { role: manala.ohmyzsh }
-  #- manala.vim
+  - mmacia.ohmyzsh
+  - manala.vim

@@ -1,0 +1,85 @@
+env:  prod
+ohmyzsh_users:
+  - user: root                # Required.
+    state: present              # present or absent. Use absent to return to bash shell.
+    theme: afowler         # Preferred theme to use. This variable overrides `ohmyzsh_default_theme`
+    plugins:                    # Use this variable to enable a custom list of plugins
+      - rails                   # Note that this variable adds plugins to those defined in `ohmyzsh_default_plugins`
+      - git
+      - docker
+      - debian
+      - colorize
+      - thor
+      - git-extras
+      - common-aliases
+      - history
+      - history-substring-search
+      - gnu-utils
+      - comand-not-found
+      - cp
+
+shorewall_version: 5
+shorewall_startup: false
+config_shorewall: true
+shorewall_config_options:  # http://shorewall.net/manpages/shorewall.conf.html
+  docker: 'Yes'
+  accounting: 'Yes'  # [Yes|No]
+  ip_forwarding: 'On' # [On|Off|Keep]
+  startup_enabled: 'Yes'
+  log_martians: 'No' # [Yes|No|Keep]
+  log_verbosity: '1'  # [-1=disabled|0=Silent|1=Major|2=All]
+  verbosity: '1'  # [0=Silent|1=Major|2=All]
+  logformat: 'Shorewall:%s:%s:'  # ["formattemplate"]
+  logfile: '/var/log/syslog'  # [pathname] - Default is /var/log/messages
+  logtagonly: 'No'  # [Yes|No]
+  multicast: 'No'  # [Yes|No]
+  startup_log: '/var/log/shorewall-init.log'  # [pathname]
+
+shorewall_rules:
+  - section: 'ALL'
+    rules:
+      - source: 'net'
+        dest: '$FW'
+        action: 'ACCEPT'
+        proto: 'tcp'
+        dest_ports:
+          - '2201'
+
+shorewall_zones:
+  - name: 'fw'
+    in_options:
+    options:
+    out_options:
+    type: 'firewall'
+  - name: 'net'
+    in_options:
+    options:
+    out_options:
+    type: 'ipv4'
+
+manala_apt_repositories:
+  - source: deb http://ftp.de.debian.org/debian/ unstable main
+
+manala_apt_preferences:
+  - package: '*'
+    pin: release o=Debian,a=stable
+    priority: 600
+    file: stable
+  - package: testing
+    pin: release o=Debian,a=testing
+    priority: -1
+    file: testing
+  - package: unstable
+    pin: release o=Debian,a=unstable
+    priority: -1
+    file: unstable
+  - package: 'shorewall*'
+    pin: release o=Debian,a=unstable
+    priority: 900
+    file: shorewall
+
+manala_apt_repositories_exclusive: true
+
+manala_apt_packages:
+  - apt-transport-https
+  - shorewall
