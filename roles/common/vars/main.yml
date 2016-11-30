@@ -2,7 +2,7 @@ env:  prod
 
 manala_ohmyzsh_users:
   - user:     root
-    template: users/default.{{ env }}.j2
+    template: zshrc.prod.j2
     config:
       - ZSH_THEME: afowler
       - plugins: ($plugins git git-extras colorize thor debian docker bundler gem npm common-aliases history history-substring-search)
