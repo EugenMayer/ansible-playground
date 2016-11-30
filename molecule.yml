@@ -1,0 +1,43 @@
+---
+dependency:
+  name: galaxy
+  requirements_file: requirements.yml
+driver:
+  name: vagrant
+docker:
+  containers:
+    - name: ansible
+      image: ubuntu
+      image_version: latest
+      ansible_groups:
+        - group1
+vagrant:
+  raw_config_args:
+    - "ssh.insert_key = false"
+    - "vm.network 'forwarded_port', guest: 80, host: 8080"
+
+  platforms:
+    - name: jessie64
+      box: debian/jessie64
+
+  providers:
+    - name: virtualbox
+      type: virtualbox
+      options:
+        memory: 512
+
+  instances:
+    - name: ansible
+      ansible_groups:
+        - group1
+
+verifier:
+  name: testinfra
+
+ansible:
+  raw_ssh_args:
+    - -o UserKnownHostsFile=/dev/null
+    - -o IdentitiesOnly=yes
+    - -o ControlMaster=auto
+    - -o ControlPersist=60s
+  host_key_checking: False

@@ -35,4 +35,3 @@
 #      docker_container:
 #        name: ansibletestcontainer
 #        state: absent
-
